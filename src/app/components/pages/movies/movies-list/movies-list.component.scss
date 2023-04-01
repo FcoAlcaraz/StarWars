@@ -1,0 +1,121 @@
+.order-Container {
+  overflow: hidden;
+}
+
+p > button {
+  color: whitesmoke !important;
+  background: none;
+  border: hidden;
+}
+
+p > button:hover {
+  color: yellow !important;
+  transform: scale(1.1)
+}
+
+p > button:active {
+  color: yellow !important;
+  transform: scale(1);
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  scroll-margin: 10px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 10px;
+  /*box-shadow: 2px 2px 15px 10px yellow;*/
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: white;
+  box-shadow: 2px 2px 15px 5px #0066ff;
+  /*box-shadow: 20px 20px 20px 10px red;*/
+}
+
+::-webkit-scrollbar-track {
+  background-color: none;
+}
+
+@media screen and (max-width: 2000px) {
+  .card-container {
+    margin: 10px;
+    padding: 0px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
+  }
+
+  .example-card, button, mat-list-item, p, mat-card-subtitle {
+    color: whitesmoke !important;
+  }
+
+  .example-card {
+    font-size: smaller;
+    max-width: 400px;
+    margin: 10px;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-color: rgb(255,255,255, 0.5);
+    background-color: rgb(0,0,0, 0.5);
+  }
+
+  .example-card:hover {
+    border-color: rgb(249,255,0, 0.5);
+    background-color: rgb(0,0,0, 1.0);
+  }
+
+  mat-card-actions > button {
+    background: none;
+  }
+
+  mat-card-actions > button:hover {
+    color: yellow !important;
+    transform: scale(1.1);
+  }
+
+  .opening_crawl {
+    padding: 0px;
+  }
+
+  p {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    max-height: 100px !important;
+    text-overflow: ellipsis;
+  }
+
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .card-container {
+    margin: 2%;
+    padding: 0px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: scroll;
+    overflow-y: hidden;
+    justify-content: flex-start;
+  }
+
+  .example-card {
+    /*    max-width: 250px;
+    margin-top: 100px;*/
+  }
+}
