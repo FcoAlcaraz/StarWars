@@ -1,6 +1,28 @@
-.example-card {
-  max-width: 400px;
+* {
+  color: yellow;
+  text-transform: uppercase;
+  font-size: 80px;
+  text-align:center;
+  text-justify:inter-word
 }
+
+#div2 {
+  position: relative;
+  animation: mymove 25s;
+}
+
+@keyframes mymove {
+  from {
+    bottom: -600px;
+  }
+
+  to {
+    transform: perspective(rotate(90deg));
+    opacity: 0;
+    bottom: 800px;
+  }
+}
+
 
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');

@@ -6,6 +6,7 @@ import { CharacterDetailsComponent } from './components/pages/characters/charact
 import { CharactersComponent } from './components/pages/characters/characters.component';
 import { MovieDetailsComponent } from './components/pages/movies/movie-details/movie-details.component';
 import { MoviesListComponent } from './components/pages/movies/movies-list/movies-list.component';
+import { CharacterResolverService } from './shared/services/character-resolver.service';
 
 const routes: Routes = [
   {
@@ -15,11 +16,21 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    data: { breadcrumb: 'Home' }
   },
   {
     path: 'characters',
-    component: CharactersComponent
+    component: CharactersComponent,
+    data: { breadcrumb: 'characters' }, // hardcoded string
+    children: [
+      {
+        path: 'character-details/:id',
+        component: CharacterDetailsComponent,
+        data: { breadcrumb: (data: any) => `${data.character.name}` }, // dymanic
+        resolve: { character: CharacterResolverService },
+      },
+    ],
   },
   {
     path: 'character-details/:id',
@@ -27,11 +38,23 @@ const routes: Routes = [
   },
   {
     path: 'films',
-    component: MoviesListComponent
+    component: MoviesListComponent,
+    data: { breadcrumb: 'Films' },
+    children: [
+      {
+        path: 'character-details/:id',
+        component: CharacterDetailsComponent,
+        data: { breadcrumb: (data: any) => `${data.character.name}` }, // dymanic
+        resolve: { character: CharacterResolverService },
+      },
+    ],
+    //children: [
+    //],
   },
   {
     path: 'movie-details/:id',
-    component: MovieDetailsComponent
+    component: MovieDetailsComponent,
+    data: { breadcrumb: 'Film Details' }
   }
 ];
 

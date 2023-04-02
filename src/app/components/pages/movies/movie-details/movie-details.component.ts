@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { IMovie } from '../../../../shared/Interfaces/imovie';
 import { IPlanet } from '../../../../shared/Interfaces/iplanet';
 import { ISpecie } from '../../../../shared/Interfaces/ispecie';
 import { IStarship } from '../../../../shared/Interfaces/istarship';
@@ -10,6 +11,7 @@ import { SpeciesService } from '../../../../shared/services/species.service';
 import { StarshipsService } from '../../../../shared/services/starships.service';
 import { VehiclesService } from '../../../../shared/services/vehicles.service';
 import { Movie } from '../movies';
+import { MovieImages } from '../MoviesImagesData';
 
 
 @Component({
@@ -19,7 +21,7 @@ import { Movie } from '../movies';
 })
 export class MovieDetailsComponent {
   //Lists for movie details attributes
-  movieDetails: any = [];
+  movieDetails: IMovie;
   movieCharacters: any = [];
   movieSpecies: ISpecie[] = [];
   movieStarships: IStarship[] = [];
@@ -51,11 +53,13 @@ export class MovieDetailsComponent {
   //Recieve the array index begining from 0 to 6
   getMovie(id: number) {
     //Correct de id to 1 instead 0 to succes the request to the endpoint
-    id = Number(id) + Number(1);
+    //id = Number(id) + Number(1);
     this.moviesService.getMovie(id).subscribe(
-      (data: Movie) => {
-        this.movieDetails = data
-
+      (data: any) => {
+        console.log(data)
+        this.movieDetails = this.addMoviesImgsSrc(data)
+        console.log(this.movieDetails)
+        //console.log(this.movieDetails)
         //Additional movie information
         //GET: Characters, Species, Starships, Planets, Vehivles
         this.getMovieCharacters(data.characters)
@@ -116,5 +120,19 @@ export class MovieDetailsComponent {
   //GET
   getCharacterByUrl(Url: string) {
     this.router.navigateByUrl(Url)
+  }
+
+  getMovieImg(movie: any) {
+    let planetSrcImg = MovieImages.find(movies => movies.url === movie.url)?.src
+    return planetSrcImg
+  }
+
+  addMoviesImgsSrc(films: any) {
+    //for (var i = 0; i < films.length; i++) {
+      let imgMovieSrc = this.getMovieImg(films)
+      films.src = imgMovieSrc
+      console.log(films)
+    //}
+    return films
   }
 } 

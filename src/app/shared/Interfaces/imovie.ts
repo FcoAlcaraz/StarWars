@@ -1,6 +1,7 @@
 import { Movie } from "../../components/pages/movies/movies";
 
 export interface IMovie extends Movie {
+  src: any,
   characters: string[];
   created: string;
   director: string;

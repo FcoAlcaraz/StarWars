@@ -1,34 +1,30 @@
 <div class="grid-container">
   <div class="grid-item">
-    <h5> Opening Crawl </h5>
-    <h6 class="openingCrawlText">
-      {{movieDetails.opening_crawl}}
-    </h6>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-
+    <img mat-card-image src="{{movieDetails?.src}}" alt="Photo of a Shiba Inu">
   </div>
   <div class="grid-item">
     <mat-card class="example-card">
       <mat-card-header>
-        <mat-card-title> <h4> Episode {{movieDetails.episode_id}}: {{movieDetails.title}}  </h4></mat-card-title>
+        <mat-card-title> <h4> Episode {{movieDetails?.episode_id}}: {{movieDetails?.title}}  </h4></mat-card-title>
       </mat-card-header>
+    
       <mat-card-content>
         <mat-list>
           <mat-list-item>
             <h5>Director: </h5>
-            <h6> {{movieDetails.director}}</h6>
+            <h6> {{movieDetails?.director}}</h6>
           </mat-list-item>
           <mat-list-item>
             <h5>Producer: </h5>
-            <h6>  {{movieDetails.producer}}</h6>
+            <h6>  {{movieDetails?.producer}}</h6>
           </mat-list-item>
           <mat-list-item>
             <h5>Release: </h5>
-            <h6>  {{movieDetails.release_date}}</h6>
+            <h6>  {{movieDetails?.release_date}}</h6>
           </mat-list-item>
           <mat-list-item>
             <h5>Edited: </h5>
-            <h6> {{movieDetails.edited}}</h6>
+            <h6> {{movieDetails?.edited}}</h6>
           </mat-list-item>
         </mat-list>
         <mat-accordion>
@@ -43,7 +39,10 @@
                 View...{{panelCharactersOpenState ? 'Less...' : 'More'}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p [routerLink]="['/character-details', character.url]" *ngFor="let character of movieCharacters"> {{character.name}}</p>
+            <div class="details">
+              <h4 routerLink="/character-details/{{indexOfelement+1}}" *ngFor="let character of movieCharacters;let indexOfelement=index"> {{character.name}}</h4>
+
+            </div>
           </mat-expansion-panel>
           <!-- Species -->
           <mat-expansion-panel (opened)="panelSpeciesOpenState = true"
@@ -56,7 +55,9 @@
                 View...{{panelSpeciesOpenState ? 'Less...' : 'More'}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p *ngFor="let specie of movieSpecies"> {{specie.name}} </p>
+            <div class="details">
+              <p *ngFor="let specie of movieSpecies"> {{specie.name}} </p>
+            </div>
           </mat-expansion-panel>
           <!-- Starships -->
           <mat-expansion-panel (opened)="panelStarshipsOpenState = true"
@@ -69,7 +70,9 @@
                 View...{{panelStarshipsOpenState ? 'Less...' : 'More'}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p *ngFor="let starship of movieStarships">   {{starship.name}}, Model: {{starship.model}} </p>
+            <div class="details">
+              <p *ngFor="let starship of movieStarships">   {{starship.name}}, Model: {{starship.model}} </p>
+            </div>
           </mat-expansion-panel>
           <!-- Planets -->
           <mat-expansion-panel (opened)="panelVehiclesOpenState = true"
@@ -82,7 +85,9 @@
                 View...{{panelPlanetsOpenState ? 'Less...' : 'More'}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p *ngFor="let planet of moviePlanets">  {{planet.name}} </p>
+            <div class="details">
+              <p *ngFor="let planet of moviePlanets">  {{planet.name}} </p>
+            </div>
           </mat-expansion-panel>
           <!-- Vehicles -->
           <mat-expansion-panel (opened)="panelVehiclesOpenState = true"
@@ -95,9 +100,15 @@
                 View...{{panelVehiclesOpenState ? 'Less...' : 'More'}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p *ngFor="let vehicle of movieVehicles">  {{vehicle.name}} </p>
+            <div class="details">
+              <p *ngFor="let vehicle of movieVehicles">  {{vehicle.name}} </p>
+            </div>
           </mat-expansion-panel>
         </mat-accordion>
+        <h5> Opening Crawl </h5>
+        <h6 class="openingCrawlText">
+          {{movieDetails?.opening_crawl}}
+        </h6>
       </mat-card-content>
     </mat-card>
   </div>

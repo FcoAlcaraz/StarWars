@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.angular",
     "\\src",
     "\\src\\app",
     "\\src\\app\\components",
     "\\src\\app\\components\\pages",
     "\\src\\app\\components\\pages\\characters",
+    "\\src\\app\\components\\pages\\characters\\character-details",
     "\\src\\app\\components\\pages\\movies",
-    "\\src\\app\\shared",
-    "\\src\\app\\shared\\Interfaces"
+    "\\src\\assets",
+    "\\src\\assets\\imgs"
   ],
-  "SelectedNode": "\\src\\app\\components\\pages\\movies\\movie-details\\movie-details.component.ts",
+  "SelectedNode": "\\src\\assets\\imgs\\films",
   "PreviewInSolutionExplorer": false
 }

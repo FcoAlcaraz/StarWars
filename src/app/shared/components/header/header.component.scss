@@ -1,26 +1,36 @@
 #header {
-  display:flex;
-  position:center;
+  display: flex;
+  position: center;
   z-index: 100000;
   width: 100%;
   background-color: none;
   justify-content: normal;
+  color: yellow !important;
 }
 
-#header > button{
+mat-toolbar {
+    background:none;
+}
+
+#header > button {
   margin: 10px;
   padding: 5px;
-  color:white;
+  color: white;
   background: none
 }
 
 #header > button:hover {
   color: yellow;
-  transform:scale(1.1)
+  transform: scale(1.1)
 }
 
 #brand, a {
   margin: 1%;
-  color: white !important;
-  text-decoration:none !important;
+  color: yellow !important;
+  text-decoration: none !important;
+}
+
+app-breadcrumb {
+  display: inline-block;
+  color: yellow;
 }

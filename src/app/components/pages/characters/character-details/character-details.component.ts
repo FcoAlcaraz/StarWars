@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { ModalpopupComponent } from '../../../../modalpopup/modalpopup.component';
 import { Character } from '../../../../shared/Interfaces/characterInterface';
 import { IMovie } from '../../../../shared/Interfaces/imovie';
@@ -100,23 +99,29 @@ export class CharacterDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(
-      params => this.getCharacterByUrl(params['id']))
+      params => this.getCharacterById(params['id']))
   }
 
   getAllCharacters() {
 
   }
   //Recieve the array index begining from 0 to 6
-  async  getCharacterById(id: number) {
+  async getCharacterById(id: number) {
     //Correct de id to 1 instead 0 to succes the request to the endpoint
-    id = Number(id) + Number(1);
+    //id = Number(id) + Number(1);
     this.charactersService.getCharacter(id).subscribe(
-      (data: any) => {
+      (data: Character) => {
         this.character = data
+
+        //Additional movie information
+        //GET: Species, Movies, Planets
+        this.getSpeciesByUrl(data.species)
+        this.getMoviesByUrl(data.films)
+        this.getPlanetsByUrl(data.homeworld)
       });
   }
 
-  async  getCharacterByUrl(Url: string) {
+  async getCharacterByUrl(Url: string) {
     this.charactersService.getCharacterByUrl(Url).subscribe(
       (data: any) => {
         this.character = data
@@ -153,7 +158,7 @@ export class CharacterDetailsComponent implements OnInit {
 
   }
 
-   openDialog(planet: IPlanet) {
+  openDialog(planet: IPlanet) {
     this.matDialog.open(ModalpopupComponent,
       {
         enterAnimationDuration: `700ms`,
@@ -165,7 +170,7 @@ export class CharacterDetailsComponent implements OnInit {
         }
       });
   }
-
+  //GEt: Planet Image Src string from Const List planetImages
   getPlanetImg(planet: any) {
     let planetSrcImg = this.planetImages.find(planets => planets.url === planet.url)?.src
     return planetSrcImg

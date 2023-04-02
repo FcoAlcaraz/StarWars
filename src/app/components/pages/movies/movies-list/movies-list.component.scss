@@ -1,26 +1,43 @@
 .order-Container {
+  display: inline-flex;
+  justify-content: flex-end;
+  margin: 0px;
+  padding: 0px;
   overflow: hidden;
+  font-size: 10px;
+  background-color: rgba(0,0,0, 0.5);
 }
 
 p > button {
+  color: yellow;
+  justify-content: center
+}
+
+p > button {
+  opacity: 0.3;
   color: whitesmoke !important;
-  background: none;
-  border: hidden;
+  border: 1px solid yellow;
 }
 
 p > button:hover {
-  color: yellow !important;
-  transform: scale(1.1)
+  transform: scale(1);
+  opacity: 1.0 !important;
 }
 
 p > button:active {
-  color: yellow !important;
-  transform: scale(1);
+  transform: scale(0.98)
+}
+
+img {
+  max-height: 70%;
+  width: auto;
+  background-size: cover
 }
 
 ::-webkit-scrollbar {
   height: 10px;
   scroll-margin: 10px;
+  transition-duration: 4s;
 }
 
 ::-webkit-scrollbar-button {
@@ -28,15 +45,21 @@ p > button:active {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
+  background-color: rgba(255, 254, 49,0.1);
+  transform: scale(0.5);
   border-radius: 10px;
-  /*box-shadow: 2px 2px 15px 10px yellow;*/
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 254, 49, 0.7);
+  transform: scale(1);
+  animation-duration: 4s;
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background-color: white;
- /* box-shadow: 2px 2px 10px 10px #0066ff;*/
-  /*box-shadow: 20px 20px 20px 10px red;*/
+  background-color: rgba(255, 254, 49, 1);
+  transform: scale(1);
+  animation-duration: 2s;
 }
 
 ::-webkit-scrollbar-track {
@@ -44,6 +67,10 @@ p > button:active {
 }
 
 @media screen and (max-width: 2000px) {
+  mat-card-image {
+    max-height: 300px;
+  }
+
   .card-container {
     margin: 10px;
     padding: 0px;
@@ -52,6 +79,7 @@ p > button:active {
     overflow: auto;
     overflow-y: hidden;
     justify-content: flex-start;
+    background-color: rgba(0,0,0, 0.5);
   }
 
   .example-card, button, mat-list-item, p, mat-card-subtitle {
@@ -98,24 +126,50 @@ p > button:active {
   }
 
   .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1000px) {
+  .example-header-image {
+    background-size: cover;
+  }
+
+  div > img {
+    height: auto;
+    width: auto;
+    /*width: 300px;*/
+    /*max-height: 200px;*/
+  }
+
+  img {
+    height: 400px;
+    width: 300px;
+    /*max-height: 200px;*/
+  }
+
   .card-container {
-    margin: 2%;
+    /*transform:scale(0.90);*/
+    background-color: rgba(0,0,0, 0.5);
+    margin: 0%, 1%,2%, 1%;
     padding: 0px;
     display: flex;
     flex-wrap: nowrap;
     overflow: scroll;
     overflow-y: hidden;
     justify-content: flex-start;
+    justify-content: space-between
   }
 
   .example-card {
-    /*    max-width: 250px;
-    margin-top: 100px;*/
+    /*justify-content: space-between;*/
+    /*    height:700% !important;
+      width:auto;*/
+    max-width: auto;
+    /*margin-top: 100px;*/
+  }
+
+  mat-list p {
+    margin-left: 10px;
   }
 }

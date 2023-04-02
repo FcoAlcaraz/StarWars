@@ -6,7 +6,6 @@ import { Movie } from '../../components/pages/movies/movies';
 import { Film } from '../Interfaces/IfilmsInterface';
 import { IMovie } from '../Interfaces/imovie';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +17,8 @@ export class MoviesService {
     return this.http.get<Film[]>(`${environment.baseUrlAPI}/films`)
   }
 
-  getMovie(id: number): Observable<Movie> {
-    return this.http.get<Movie>(`${environment.baseUrlAPI}/films/${id}`)
+  getMovie(id: number): Observable<IMovie> {
+    return this.http.get<IMovie>(`${environment.baseUrlAPI}/films/${id}`)
     //return this.http.get<Movie>(`${environment.baseUrlAPI}/${id}`)
   }
 

@@ -23,6 +23,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ModalpopupComponent } from './modalpopup/modalpopup.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatBadgeModule } from '@angular/material/badge';
+import { BreadcrumbComponent } from './shared/components/breadcrumb/breadcrumb.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     routingComponents,
     CharacterDetailsComponent,
     ModalpopupComponent,
+    BreadcrumbComponent,
 
 
   ],
@@ -53,7 +56,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatButtonToggleModule,
     MatExpansionModule,
     MatDialogModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatIconModule
 
 
   ],
