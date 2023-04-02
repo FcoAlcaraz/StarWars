@@ -5,9 +5,29 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   padding: 0px;
   margin: 0px;
-}
-body {
-  background: rgb(0,0,0);
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 85%, rgba(162,166,0,1) 100%);
+  text-align: justify;
+  transition-duration: 1s;
+  user-select:none;
 }
 
+body {
+  background-image: url(../src/assets/imgs/space-png-transparent-102222.png);
+  background-size:cover;
+  background-repeat: space;
+  background-color: black;
+  /*background: rgb(0,0,0, 0.3);*/
+  /*background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 85%, rgba(162,166,0,1) 100%);*/
+}
+h6:hover, h4:hover {
+  transform: scale(0.98);
+  transition-duration: 1s;
+}
+
+h5, h4 {
+  color: yellow !important;
+  cursor: default;
+}
+*>p :hover {
+  transform: scale(0.98);
+  transition-duration: 1s;
+}

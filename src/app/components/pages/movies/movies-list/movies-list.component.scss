@@ -35,7 +35,7 @@ p > button:active {
 
 ::-webkit-scrollbar-thumb:active {
   background-color: white;
-  box-shadow: 2px 2px 15px 5px #0066ff;
+ /* box-shadow: 2px 2px 10px 10px #0066ff;*/
   /*box-shadow: 20px 20px 20px 10px red;*/
 }
 
@@ -70,7 +70,7 @@ p > button:active {
 
   .example-card:hover {
     border-color: rgb(249,255,0, 0.5);
-    background-color: rgb(0,0,0, 1.0);
+    background-color: rgb(0,0,0, .6);
   }
 
   mat-card-actions > button {

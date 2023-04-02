@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MovieDetailsComponent } from './movie-details/movie-details.component';
-import { MoviesListComponent } from './movies-list/movies-list.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { Movie } from './movies';
+import { MoviesListComponent } from './movies-list/movies-list.component';
 const moviesComponents = [MovieDetailsComponent, MoviesListComponent];
 
 @NgModule({

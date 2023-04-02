@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { CharacterDetailsComponent } from './components/pages/characters/character-details/character-details.component';
+import { CharactersComponent } from './components/pages/characters/characters.component';
 import { MovieDetailsComponent } from './components/pages/movies/movie-details/movie-details.component';
 import { MoviesListComponent } from './components/pages/movies/movies-list/movies-list.component';
-import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
@@ -17,7 +19,11 @@ const routes: Routes = [
   },
   {
     path: 'characters',
-    component: MoviesListComponent
+    component: CharactersComponent
+  },
+  {
+    path: 'character-details/:id',
+    component: CharacterDetailsComponent
   },
   {
     path: 'films',
@@ -38,4 +44,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [HomeComponent, MoviesListComponent, MovieDetailsComponent]
+export const routingComponents = [
+  HomeComponent,
+  MoviesListComponent, MovieDetailsComponent, CharacterDetailsComponent, CharactersComponent
+]

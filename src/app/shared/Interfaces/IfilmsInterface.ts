@@ -1,4 +1,3 @@
-import { Movie } from "../../components/pages/movies/movies";
 import { Character } from "./characterInterface";
 
 export interface Film {

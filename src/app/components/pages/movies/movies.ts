@@ -3,12 +3,12 @@ export class Movie {
   characters: string[];
   created: string;
   director: string;
-  edited: Date;
+  edited: string;
   episode_id: number;
   opening_crawl: string;
-  planets: [];
+  planets: string[];
   producer: string;
-  release_date: Date;
+  release_date: string;
   species: string[];
   starships: [];
   title: string; //this is a search filter

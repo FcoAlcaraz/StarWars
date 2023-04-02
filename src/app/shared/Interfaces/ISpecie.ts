@@ -12,6 +12,6 @@ export interface ISpecie{
   people: string[],
   films:string[],
   url: string[],
-  created: Date,
-  edited: Date
+  created: string,
+  edited: string
 }

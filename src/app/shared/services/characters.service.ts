@@ -8,7 +8,6 @@ import { Character } from '../Interfaces/characterInterface';
   providedIn: 'root'
 })
 export class CharactersService {
-  character: Character[];
   constructor(private http: HttpClient) { }
 
   getAllCharacters(): Observable<Character[]> {

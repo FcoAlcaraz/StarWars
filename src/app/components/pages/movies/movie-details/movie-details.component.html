@@ -1,65 +1,56 @@
 <div class="grid-container">
   <div class="grid-item">
-    <h5>Episode {{movieDetails.episode_id}}: {{movieDetails.title}} </h5>
-    <h6>Director: {{movieDetails.director}}</h6>
-
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
     <h5> Opening Crawl </h5>
-    <p>
+    <h6 class="openingCrawlText">
       {{movieDetails.opening_crawl}}
-    </p>
+    </h6>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
   </div>
   <div class="grid-item">
     <mat-card class="example-card">
       <mat-card-header>
-        <mat-card-title> <h4>  Episode Info </h4></mat-card-title>
+        <mat-card-title> <h4> Episode {{movieDetails.episode_id}}: {{movieDetails.title}}  </h4></mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <mat-list>
           <mat-list-item>
-            <span matListItemTitle>Producer: </span>
+            <h5>Director: </h5>
+            <h6> {{movieDetails.director}}</h6>
           </mat-list-item>
           <mat-list-item>
-            <p> {{movieDetails.producer}}</p>
-          </mat-list-item>
-        </mat-list>
-        <mat-list>
-          <mat-list-item>
-            <span matListItemTitle>Release: </span>
+            <h5>Producer: </h5>
+            <h6>  {{movieDetails.producer}}</h6>
           </mat-list-item>
           <mat-list-item>
-            <p>    {{movieDetails.release_date}}</p>
-          </mat-list-item>
-        </mat-list>
-        <mat-list>
-          <mat-list-item>
-            <span matListItemTitle>Edited: </span>
+            <h5>Release: </h5>
+            <h6>  {{movieDetails.release_date}}</h6>
           </mat-list-item>
           <mat-list-item>
-            <p>
-              {{movieDetails.edited}}
-            </p>
+            <h5>Edited: </h5>
+            <h6> {{movieDetails.edited}}</h6>
           </mat-list-item>
         </mat-list>
         <mat-accordion>
-          <!--  (click)="getMovieCharacters(movieDetails.characters)" -->
+          <!-- Characters -->
           <mat-expansion-panel (opened)="panelCharactersOpenState = true"
                                (closed)="panelCharactersOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <h6>Characters: </h6>
+                <h4>Characters: </h4>
               </mat-panel-title>
               <mat-panel-description>
                 View...{{panelCharactersOpenState ? 'Less...' : 'More'}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p *ngFor="let character of movieCharacters"> {{character.name}}</p>
+            <p [routerLink]="['/character-details', character.url]" *ngFor="let character of movieCharacters"> {{character.name}}</p>
           </mat-expansion-panel>
+          <!-- Species -->
           <mat-expansion-panel (opened)="panelSpeciesOpenState = true"
                                (closed)="panelSpeciesOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <h6>Species: </h6>
+                <h4>Species: </h4>
               </mat-panel-title>
               <mat-panel-description>
                 View...{{panelSpeciesOpenState ? 'Less...' : 'More'}}
@@ -67,48 +58,47 @@
             </mat-expansion-panel-header>
             <p *ngFor="let specie of movieSpecies"> {{specie.name}} </p>
           </mat-expansion-panel>
+          <!-- Starships -->
           <mat-expansion-panel (opened)="panelStarshipsOpenState = true"
                                (closed)="panelStarshipsOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <h6>Starships: </h6>
+                <h4>Starships: </h4>
               </mat-panel-title>
               <mat-panel-description>
                 View...{{panelStarshipsOpenState ? 'Less...' : 'More'}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p *ngFor="let starship of movieDetails.starships">   {{starship}} </p>
+            <p *ngFor="let starship of movieStarships">   {{starship.name}}, Model: {{starship.model}} </p>
           </mat-expansion-panel>
+          <!-- Planets -->
           <mat-expansion-panel (opened)="panelVehiclesOpenState = true"
                                (closed)="panelVehiclesOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <h6>Vehicles: </h6>
+                <h4>Planets: </h4>
+              </mat-panel-title>
+              <mat-panel-description>
+                View...{{panelPlanetsOpenState ? 'Less...' : 'More'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p *ngFor="let planet of moviePlanets">  {{planet.name}} </p>
+          </mat-expansion-panel>
+          <!-- Vehicles -->
+          <mat-expansion-panel (opened)="panelVehiclesOpenState = true"
+                               (closed)="panelVehiclesOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h4>Vehicles: </h4>
               </mat-panel-title>
               <mat-panel-description>
                 View...{{panelVehiclesOpenState ? 'Less...' : 'More'}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p *ngFor="let vehicle of movieDetails.vehicles">  {{vehicle}} </p>
-          </mat-expansion-panel>
-          <mat-expansion-panel (opened)="panelVehiclesOpenState = true"
-                               (closed)="panelVehiclesOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <h6>Vehicles: </h6>
-              </mat-panel-title>
-              <mat-panel-description>
-                View...{{panelVehiclesOpenState ? 'Less...' : 'More'}}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p *ngFor="let vehicle of movieDetails.vehicles">  {{vehicle}} </p>
+            <p *ngFor="let vehicle of movieVehicles">  {{vehicle.name}} </p>
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
     </mat-card>
   </div>
 </div>

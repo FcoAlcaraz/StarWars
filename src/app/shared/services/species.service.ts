@@ -12,11 +12,11 @@ export class SpeciesService {
   constructor(private http: HttpClient) { }
 
   getAllSpecies(): Observable<ISpecie[]> {
-    return this.http.get<ISpecie[]>(`${environment.baseUrlAPI}/people`)
+    return this.http.get<ISpecie[]>(`${environment.baseUrlAPI}/species`)
   }
 
   getSpecie(id: number): Observable<ISpecie> {
-    return this.http.get<ISpecie>(`${environment.baseUrlAPI}/people/${id}`)
+    return this.http.get<ISpecie>(`${environment.baseUrlAPI}/species/${id}`)
   }
 
   getSpecieByUrl(Url: string): Observable<ISpecie> {

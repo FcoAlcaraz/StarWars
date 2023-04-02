@@ -2,8 +2,7 @@
   color: whitesmoke !important;
   font-size: 20px;
   font-weight: 100;
-  /*  background-color:none;
-  background:none;*/
+  user-select: none;
 }
 
 mat-accordion {
@@ -42,4 +41,27 @@ mat-expansion-panel {
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+h6:hover, h4:hover {
+  transform: scale(0.98);
+  transition-duration: 1s;
+}
+
+h5, h4 {
+  color: yellow !important;
+  cursor: default;
+}
+
+* > p :hover {
+  transform: scale(0.98);
+  transition-duration: 1s;
+}
+
+mat-panel-description{
+    text-align:right;
+    width:50%;
+}
+.openingCrawlText {
+  max-width: 90%;
+  text-align: justify;
 }
