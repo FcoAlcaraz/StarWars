@@ -22,7 +22,7 @@ import { MovieImages } from '../MoviesImagesData';
 export class MovieDetailsComponent {
   //Lists for movie details attributes
   movieDetails: IMovie;
-  movieCharacters: Character[] =[];
+  movieCharacters: Character[] = [];
   movieSpecies: ISpecie[] = [];
   movieStarships: IStarship[] = [];
   moviePlanets: IPlanet[] = [];
@@ -73,9 +73,19 @@ export class MovieDetailsComponent {
       this.charactersService.getCharacterByUrl(x).subscribe(
         (data: any) => {
           this.movieCharacters.push(data);
-         
+          this.addId(this.movieCharacters)
         })
     )
+  }
+
+  addId(characters: any[]) {
+    for (var i = 0; i < characters.length; i++) {
+      let splitedUrl = characters[i].url.split('/')
+      let characterAssignedId = splitedUrl[5] //Value of the on API service
+      characters[i].id = characterAssignedId
+
+    }
+    this.movieCharacters = characters
   }
 
   //GET: Species

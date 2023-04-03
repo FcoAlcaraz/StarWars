@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Movie } from '../../../Models/movies';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { Movie } from './movies';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 //const moviesComponents = [MovieDetailsComponent, MoviesListComponent];
 

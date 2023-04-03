@@ -1,4 +1,5 @@
 export interface Character {
+  id: number
   src: any;
   name: string,
   birth_year: string,
