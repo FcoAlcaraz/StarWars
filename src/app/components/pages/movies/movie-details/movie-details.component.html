@@ -40,8 +40,7 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="details">
-              <h4 routerLink="/character-details/{{indexOfelement+1}}" *ngFor="let character of movieCharacters;let indexOfelement=index"> {{character.name}}</h4>
-
+              <p routerLink="/character-details/{{indexOfelement+1}}" *ngFor="let character of movieCharacters;let indexOfelement=index"> {{character.name}}</p>
             </div>
           </mat-expansion-panel>
           <!-- Species -->

@@ -1,4 +1,5 @@
 export interface Character {
+  src: any;
   name: string,
   birth_year: string,
   eye_color: string,

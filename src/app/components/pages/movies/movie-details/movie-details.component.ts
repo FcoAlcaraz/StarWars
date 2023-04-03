@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Character } from '../../../../shared/Interfaces/characterInterface';
 import { IMovie } from '../../../../shared/Interfaces/imovie';
 import { IPlanet } from '../../../../shared/Interfaces/iplanet';
 import { ISpecie } from '../../../../shared/Interfaces/ispecie';
@@ -10,19 +11,18 @@ import { PlanetsService } from '../../../../shared/services/planets.service';
 import { SpeciesService } from '../../../../shared/services/species.service';
 import { StarshipsService } from '../../../../shared/services/starships.service';
 import { VehiclesService } from '../../../../shared/services/vehicles.service';
-import { Movie } from '../movies';
 import { MovieImages } from '../MoviesImagesData';
-
 
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.scss']
 })
+
 export class MovieDetailsComponent {
   //Lists for movie details attributes
   movieDetails: IMovie;
-  movieCharacters: any = [];
+  movieCharacters: Character[] =[];
   movieSpecies: ISpecie[] = [];
   movieStarships: IStarship[] = [];
   moviePlanets: IPlanet[] = [];
@@ -50,16 +50,13 @@ export class MovieDetailsComponent {
       params => this.getMovie(params[`id`]))
   }
 
-  //Recieve the array index begining from 0 to 6
+  //GET: Movie by id:   
   getMovie(id: number) {
-    //Correct de id to 1 instead 0 to succes the request to the endpoint
-    //id = Number(id) + Number(1);
     this.moviesService.getMovie(id).subscribe(
       (data: any) => {
-        console.log(data)
+        //console.log(data)
         this.movieDetails = this.addMoviesImgsSrc(data)
-        console.log(this.movieDetails)
-        //console.log(this.movieDetails)
+
         //Additional movie information
         //GET: Characters, Species, Starships, Planets, Vehivles
         this.getMovieCharacters(data.characters)
@@ -76,6 +73,7 @@ export class MovieDetailsComponent {
       this.charactersService.getCharacterByUrl(x).subscribe(
         (data: any) => {
           this.movieCharacters.push(data);
+         
         })
     )
   }
@@ -122,17 +120,15 @@ export class MovieDetailsComponent {
     this.router.navigateByUrl(Url)
   }
 
+  addMoviesImgsSrc(films: any) {
+    let imgMovieSrc = this.getMovieImg(films)
+    films.src = imgMovieSrc
+    return films
+  }
+
   getMovieImg(movie: any) {
     let planetSrcImg = MovieImages.find(movies => movies.url === movie.url)?.src
     return planetSrcImg
   }
 
-  addMoviesImgsSrc(films: any) {
-    //for (var i = 0; i < films.length; i++) {
-      let imgMovieSrc = this.getMovieImg(films)
-      films.src = imgMovieSrc
-      console.log(films)
-    //}
-    return films
-  }
 } 

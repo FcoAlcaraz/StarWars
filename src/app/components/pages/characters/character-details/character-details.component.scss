@@ -4,7 +4,11 @@
   font-weight: 100;
   user-select: none;
 }
-
+img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+}
 mat-accordion {
   width: 100%;
   padding: 0px;

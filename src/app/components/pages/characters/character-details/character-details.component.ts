@@ -10,6 +10,7 @@ import { CharactersService } from '../../../../shared/services/characters.servic
 import { MoviesService } from '../../../../shared/services/movies.service';
 import { PlanetsService } from '../../../../shared/services/planets.service';
 import { SpeciesService } from '../../../../shared/services/species.service';
+import { CharactersImage } from '../CharactersImagesData';
 
 @Component({
   selector: 'app-character-details',
@@ -17,11 +18,13 @@ import { SpeciesService } from '../../../../shared/services/species.service';
   styleUrls: ['./character-details.component.scss']
 })
 export class CharacterDetailsComponent implements OnInit {
+  //Lists for movie details attributes
   character: Character
   movieSpecies: ISpecie[] = []
   movies: IMovie[] = []
   planet: IPlanet
 
+  //Data for Image movies src
   planetImages = [
     { name: "Tatooine", url: "https://swapi.dev/api/planets/1/", src: "/assets/imgs/planets/Tatooine.jpg" },
     { name: "Alderaan", url: "https://swapi.dev/api/planets/2/", src: "/assets/imgs/planets/Alderaan.jpeg" },
@@ -40,7 +43,7 @@ export class CharacterDetailsComponent implements OnInit {
     { name: "Mygeeto", url: "https://swapi.dev/api/planets/16/", src: "/assets/imgs/planets/Mygeeto.jpg" },
     { name: "Felucia", url: "https://swapi.dev/api/planets/17/", src: "/assets/imgs/planets/Felucia.jpg" },
     { name: "Cato Neimoidia", url: "https://swapi.dev/api/planets/18/", src: "/assets/imgs/planets/CatoNeimoidia.jpg" },
-    { name: "Saleucami", url: "https://swapi.dev/api/planets/19/", src: "/assets/imgs/planets/Saleucami.jpg" },
+    { name: "Saleucami", url: "https://swapi.dev/api/planets/19/", src: "/assets/imgs/planets/Stewjon.jpeg" },
     { name: "Stewjon", url: "https://swapi.dev/api/planets/20/", src: "/assets/imgs/planets/Stewjon.jpg" },
     { name: "Eriadu", url: "https://swapi.dev/api/planets/21/", src: "/assets/imgs/planets/Eriadu.jpg" },
     { name: "Corellia", url: "https://swapi.dev/api/planets/22/", src: "/assets/imgs/planets/Corellia.jpg" },
@@ -84,10 +87,10 @@ export class CharacterDetailsComponent implements OnInit {
     { name: "Umbara", url: "https://swapi.dev/api/planets/60/", src: "/assets/imgs/planets/Coruscant.jpg" }
   ]
 
+  //state from accordion menus
   panelSpeciesOpenState = false
   panelBodySpecsOpenState = false
   panelFilmsOpenState = false
-  hidden = false;
 
   constructor(
     private charactersService: CharactersService,
@@ -102,16 +105,17 @@ export class CharacterDetailsComponent implements OnInit {
       params => this.getCharacterById(params['id']))
   }
 
+  //Implement in case Character Component exist
   getAllCharacters() {
 
   }
-  //Recieve the array index begining from 0 to 6
-  async getCharacterById(id: number) {
-    //Correct de id to 1 instead 0 to succes the request to the endpoint
-    //id = Number(id) + Number(1);
+
+  //GET: Character by id: 
+   getCharacterById(id: number) {
+    //Request to Character Service retrieve Character type object
     this.charactersService.getCharacter(id).subscribe(
       (data: Character) => {
-        this.character = data
+        this.character = this.addcharacterImgsSrc(data)
 
         //Additional movie information
         //GET: Species, Movies, Planets
@@ -121,10 +125,11 @@ export class CharacterDetailsComponent implements OnInit {
       });
   }
 
-  async getCharacterByUrl(Url: string) {
+   getCharacterByUrl(Url: string) {
     this.charactersService.getCharacterByUrl(Url).subscribe(
-      (data: any) => {
+      (data: Character) => {
         this.character = data
+
         this.getSpeciesByUrl(data.species)
         this.getMoviesByUrl(data.films)
         this.getPlanetsByUrl(data.homeworld)
@@ -132,7 +137,7 @@ export class CharacterDetailsComponent implements OnInit {
   }
 
   //GET: Species
-  async getSpeciesByUrl(species: string[]) {
+   getSpeciesByUrl(species: string[]) {
     species.forEach(x =>
       this.speciesServices.getSpecieByUrl(x).subscribe(
         (data: any) => {
@@ -141,7 +146,7 @@ export class CharacterDetailsComponent implements OnInit {
     )
   }
 
-  async getMoviesByUrl(movies: string[]) {
+   getMoviesByUrl(movies: string[]) {
     movies.forEach(x =>
       this.moviesService.getMovieByUrl(x).subscribe(
         (data: any) => {
@@ -150,7 +155,7 @@ export class CharacterDetailsComponent implements OnInit {
     )
   }
 
-  async getPlanetsByUrl(planet: string) {
+   getPlanetsByUrl(planet: string) {
     this.planetService.getPlanetsByUrl(planet).subscribe(
       (data: any) => {
         this.planet = data
@@ -158,6 +163,7 @@ export class CharacterDetailsComponent implements OnInit {
 
   }
 
+  //Call to Dialog Planet Info
   openDialog(planet: IPlanet) {
     this.matDialog.open(ModalpopupComponent,
       {
@@ -176,4 +182,15 @@ export class CharacterDetailsComponent implements OnInit {
     return planetSrcImg
   }
 
+  addcharacterImgsSrc(character: any) {
+    let imgcharacterSrc = this.getMovieImg(character)
+    character.src = imgcharacterSrc
+    //console.log("addcharacterImgsSrc",character)
+    return character
+  }
+
+  getMovieImg(character: any) {
+    let characterSrcImg = CharactersImage.find(characters => characters.url === character.url)?.src
+    return characterSrcImg
+  }
 }

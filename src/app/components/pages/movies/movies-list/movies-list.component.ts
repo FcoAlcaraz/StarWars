@@ -22,7 +22,6 @@ export class MoviesListComponent {
       (data: any) => {
         this.films = data.results
         this.addMoviesImgsSrc(this.films)
-        //console.log(this.films)
       });
   }
 
