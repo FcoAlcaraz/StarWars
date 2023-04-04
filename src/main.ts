@@ -9,7 +9,7 @@ import { HomeComponent } from '@app/components/home/home.component';
   selector: 'my-app',
   standalone: true,
   imports: [CommonModule, HomeComponent, AppComponent],
-  templateUrl: `./app/app.component.html`,
+  templateUrl: `./app.component.html`,
 })
 export class App {
   name = 'Angular';
