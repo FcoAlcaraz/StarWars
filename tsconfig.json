@@ -3,6 +3,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@app/*": [ "src/app/*" ],
+      "@home/*": [ "src/app/home/*" ],
+      "@movies/*": [ "src/app/components/movies/*" ]
+
+    },
+    "strictPropertyInitialization": false,
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
