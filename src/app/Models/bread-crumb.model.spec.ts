@@ -1,7 +1,7 @@
-import { BreadCrumb } from './bread-crumb.model';
+import { Breadcrumb } from './bread-crumb.model';
 
 describe('BreadCrumb', () => {
   it('should create an instance', () => {
-    expect(new BreadCrumb()).toBeTruthy();
+    expect(new Breadcrumb()).toBeTruthy();
   });
 });
