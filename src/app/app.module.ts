@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -25,6 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BreadcrumbComponent } from './shared/components/breadcrumb/breadcrumb.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { MatIconModule } from '@angular/material/icon';
     CharacterDetailsComponent,
     ModalpopupComponent,
     BreadcrumbComponent,
+    SpinnerComponent,
 
 
   ],
@@ -61,7 +64,11 @@ import { MatIconModule } from '@angular/material/icon';
 
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent, HeaderComponent]
 })
 export class AppModule { }

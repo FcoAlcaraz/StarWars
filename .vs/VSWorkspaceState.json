@@ -6,11 +6,8 @@
     "\\src\\app\\components",
     "\\src\\app\\components\\pages",
     "\\src\\app\\components\\pages\\characters",
-    "\\src\\app\\components\\pages\\characters\\character-details",
-    "\\src\\app\\components\\pages\\movies",
-    "\\src\\assets",
-    "\\src\\assets\\imgs"
+    "\\src\\app\\components\\pages\\movies\\movies-list"
   ],
-  "SelectedNode": "\\src\\assets\\imgs\\films",
+  "SelectedNode": "\\src\\app\\components\\pages\\characters\\characters.module.ts",
   "PreviewInSolutionExplorer": false
 }
